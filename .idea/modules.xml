@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Assignment10/MicroservicesCarGateway/MicroservicesCarGateway/api-gateway.iml" filepath="$PROJECT_DIR$/Assignment10/MicroservicesCarGateway/MicroservicesCarGateway/api-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Assignment10/MicroservicesCarCatalog/car-catalog.iml" filepath="$PROJECT_DIR$/Assignment10/MicroservicesCarCatalog/car-catalog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Assignment10/Microservices/discover.iml" filepath="$PROJECT_DIR$/Assignment10/Microservices/discover.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/si-miniproject-4-microservices.iml" filepath="$PROJECT_DIR$/.idea/si-miniproject-4-microservices.iml" />
     </modules>
   </component>
