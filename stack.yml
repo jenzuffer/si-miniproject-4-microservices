@@ -1,18 +1,17 @@
 # Use root/example as user/password credentials
 version: '3.1'
+
 services:
-mongo:
-    image: mongo:3.6.1
-    ports:
-      - 27017:27017    
+
+  mongo:
+    image: mongo
     restart: always
-    command: --smallfiles    
-    container_name: app_mongodb_c
-    volumes:
-      - ~/dockerdata/mongodb:/data/db      
+    ports: 
+     - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+
   mongo-express:
     image: mongo-express
     restart: always
