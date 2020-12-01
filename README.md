@@ -4,7 +4,9 @@ Kimon, Tobias & Christian
 
 Docker commands:
 
-docker run --name mongoDBtest -d mongo:latest
+docker volume create --name mongotest
+
+docker run -d -v mongotest:/volume --name mongoDBtest -d mongo:latest ("docker inspect mongotest" to find physical storage location)
 
 docker swarm init
 
