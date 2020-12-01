@@ -1,10 +1,16 @@
 package dk.dd.carcatalog;
 
 import com.mongodb.*;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoIterable;
+import org.bson.Document;
+
+import java.util.Iterator;
 
 public class MongoHandler {
+    private String dbName = "car_ratings";
     private MongoClient mongoClient = new MongoClient();
 
     public String createMongoDBConnection(){
@@ -37,5 +43,34 @@ public class MongoHandler {
 
          */
         //return sb.toString();
+    }
+
+    public String getRatingCollection(String collectionName){
+        MongoDatabase database = mongoClient.getDatabase(dbName);
+        MongoCollection<Document> collectionData = database.getCollection(collectionName);
+        FindIterable<Document> iterDoc = collectionData.find();
+        StringBuilder sb = new StringBuilder();
+        Iterator it = iterDoc.iterator();
+        while (it.hasNext()) {
+            sb.append(it.next());
+        }
+        return sb.toString();
+    }
+
+    public boolean insertRatingIntoCollection(Rating rating) {
+        try {
+            MongoDatabase database = mongoClient.getDatabase(dbName);
+            MongoCollection<Document> collectionData = database.getCollection("ratings");
+            Document ratingDoc = new Document();
+            ratingDoc.append("carID", rating.getCarID())
+                    .append("userID", rating.getUserID())
+                    .append("rating", rating.getRating());
+            collectionData.insertOne(ratingDoc);
+        }
+        catch (Exception e) {
+            System.err.println(e);
+            return false;
+        }
+        return true;
     }
 }

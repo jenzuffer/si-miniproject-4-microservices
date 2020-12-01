@@ -10,10 +10,10 @@ import java.util.Collection;
 public class RatingController {
     private MongoHandler mh = new MongoHandler();
     @PostMapping("")
-    public boolean postCarRating(@RequestBody Rating rating) { return false;}
+    public boolean postCarRating(@RequestBody Rating rating) { return mh.insertRatingIntoCollection(rating);}
 
     @GetMapping("")
-    public Collection<Rating> getCarRatings() { return new ArrayList<Rating>(); }
+    public String getCarRatings() { return mh.getRatingCollection("ratings"); }
 
     @GetMapping("/collections")
     public String getCollections(){return mh.createMongoDBConnection();}
