@@ -6,9 +6,9 @@ Docker commands:
 
 docker volume create --name mongotest
 
-docker run -d -v mongotest:/volume --name mongoDBtest -d mongo:latest ("docker inspect mongotest" to find physical storage location)
+docker run --name mongoDBtest -d -v mongotest:/data/db mongo:latest
 
-docker swarm init
+docker swarm init (to leave "docker swarm leave --force")
 
 docker stack deploy -c stack.yml mongo
 
