@@ -1,4 +1,4 @@
-package dk.dd.carcatalog;
+package models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,4 +19,8 @@ public class Car
         @NonNull private String brand;
         @NonNull private int year;
         @NonNull private long km;
+
+        public void setId(long id) {
+                this.id = id;
+        }
 }

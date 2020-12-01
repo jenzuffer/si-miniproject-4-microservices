@@ -1,8 +1,8 @@
-package dk.dd.carcatalog;
+package controllers;
 
+import dk.dd.carcatalog.CarRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,19 +21,19 @@ public class CarController
         private Object Car;
 
         @GetMapping("/")
-        public List<dk.dd.carcatalog.Car> retrieveAllCars()
+        public List<models.Car> retrieveAllCars()
         {
-            return (List<dk.dd.carcatalog.Car>) repo.findAll();
+            return (List<models.Car>) repo.findAll();
         }
 
         @GetMapping("/{brand}")
-        public dk.dd.carcatalog.Car findByBrand(@PathVariable String brand)
+        public models.Car findByBrand(@PathVariable String brand)
         {
             return repo.findByBrand(brand);
         }
 
         @PostMapping("/")
-        public String saveCar(@RequestBody dk.dd.carcatalog.Car car)
+        public String saveCar(@RequestBody models.Car car)
         {
             repo.save(car);
             return " record saved..";
@@ -47,9 +47,9 @@ public class CarController
         }
 
         @PutMapping("/{id}")
-        public ResponseEntity<Object> updateCar(@RequestBody dk.dd.carcatalog.Car car, @PathVariable int id)
+        public ResponseEntity<Object> updateCar(@RequestBody models.Car car, @PathVariable int id)
         {
-            Optional<dk.dd.carcatalog.Car> found = repo.findById((long) id);
+            Optional<models.Car> found = repo.findById((long) id);
 
             if (!found.isPresent())
                 return ResponseEntity.badRequest()
